@@ -1,0 +1,22 @@
+body{
+background-color: black;
+}
+
+h1{
+color:white;
+}
+
+.carousel-inner{
+  width: auto;
+  max-width: 450px;
+  height: 450px;
+  align-items:center;
+  justify-content: center;
+  overflow: hidden;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*.class
+#id*/
