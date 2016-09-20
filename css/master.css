@@ -1,22 +1,31 @@
-body{
-background-color: black;
+body {
+  background-color: black;
 }
 
-h1{
-color:white;
+h1 {
+  color: white;
+  opacity: 100;
 }
 
-.carousel-inner{
-  width: auto;
-  max-width: 450px;
-  height: 450px;
-  align-items:center;
-  justify-content: center;
-  overflow: hidden;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+h2 {
+  color: white;
+  opacity: .3;
 }
 
-/*.class
-#id*/
+h3 {
+  color: white;
+  opacity: .8;
+}
+
+#mainDiv {
+  background-color: black;
+}
+
+#shepsLogo {
+  padding-left:10px;
+  padding-right: 50px;
+}
+
+#blogPic {
+  width:375px;
+}
