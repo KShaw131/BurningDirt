@@ -1,19 +1,10 @@
 Welcome to BurningDirt.com
 v1.0.0
 
-MongoDB Localhost start:
-  sudo mongod --dbpath (path to /data/db/)
-  db name: blogs1
-  Collection name: "blogs"
+MEAN Stack Development!
 
-Express Server start:
-  npm start
-
-
-MEAN Stack Development at it's best!
-
-This application was built because of my passion for coding and motorcycles! I really enjoyed building this application from scratch as it was the best way for me to learn the MEAN Stack!
+This is my first project working with the MEAN Stack and I love it!! I wanted to dive into javascript full stack development and decided a blogging website would be a great learning experience. With my passion of motorcycles in mind, I have created a blog site for Motocross! I'm looking forward to taking this simple blog engine and create a fully functional website with User profiles and much more in the future! Stay tuned!
 
 Thanks for checking it out!
 
-Kelly
+-Kelly
