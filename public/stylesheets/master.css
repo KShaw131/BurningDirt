@@ -1,0 +1,31 @@
+body {
+  background-color: black;
+}
+
+h1 {
+  color: white;
+  opacity: 100;
+}
+
+h2 {
+  color: white;
+  opacity: .3;
+}
+
+h3 {
+  color: white;
+  opacity: .8;
+}
+
+#mainDiv {
+  background-color: black;
+}
+
+#shepsLogo {
+  padding-left:10px;
+  padding-right: 50px;
+}
+
+#blogPic {
+  width:375px;
+}

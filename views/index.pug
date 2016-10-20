@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="burningDirt">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="javascripts/core.js"></script>
+
+    <title>BurningDirt</title>
+  </head>
+
+  <body ng-controller="mainController">
+
+    <div id="logoContainer">
+      <div class="container">
+        <a id="burningDirtLogo" href="#" class="pull-left"><img src="images/burningDirtLogo.png"></a>
+        <a id="shepsLogo" href="#" class="pull-right"><img src="images/shepsLogo400x100.png"></a>
+      </div>
+    </div>
+
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-inverse navbar-static-top">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a href="#" class="navbar-brand" ng-click="setCurrentSeries(null)">BurningDirt</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li ng-repeat="series in series">
+                      <a href="#" ng-click="setCurrentSeries(series)" ng-class="{'active':isCurrentSeries(series)}">{{series.name}}</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#teamRides">Our Team</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              </ul>
+              <div class="nav navbar-nav navbar-right">
+                <form class="navbar-form" role="search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                    <div class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Main Container Div -->
+    <div id="mainDiv" class="container">
+
+      <div><!-- Page Header -->
+        <h1>Using index.pug</h1>
+        <h1>{{currentSeries.name}}</h1>
+        <hr>
+      </div>
+
+      <div><!-- Create Blog -->
+        <button type="button" class="btn btn-link" ng-click="startCreating()">
+          <span class="glyphicon glyphicon-plus"></span>
+          Create Blog
+        </button>
+
+        <div ng-if="isCreating"><!--Creating Form-->
+          <form class="create-form" ng-show="isCreating" role="form" ng-submit="createBlog()">
+            <div class="form-group">
+              <label for="newBlogTitle">Title</label>
+              <input type="text" class="form-control" id="newBlogTitle" ng-model="formData.title">
+            </div>
+
+            <div class="form-group">
+              <label for="newBlogSeries">Series</label>
+              <select class="form-control" id="newBlogSeries" ng-model="formData.series">
+                <option ng-repeat="series in series">{{series.name}}</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="newBlogContent">Content</label>
+              <textarea rows="5" class="form-control" id="newBlogContent" ng-model="formData.content"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="newBlogImage">Image URL</label>
+              <input type="text" class="form-control" id="newBlogImage" ng-model="formData.image">
+            </div>
+
+            <button type="submit" class="btn btn-info btn-lg">Create</button>
+            <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelCreating()">Cancel</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- <div ng-if="isEditing">
+        <h4>Editing {{editedBlog.title}}</h4>
+
+        <form class="edit-form" role="form" ng-submit="updateBlog(editedBlog)" novalidate>
+          <div class="form-group">
+              <label>Title</label>
+              <input type="text" class="form-control" ng-model="editedBlog.title">
+          </div>
+          <div class="form-group">
+            <label>Series</label>
+            <select class="form-control" ng-model="editedBlog.series">
+              <option ng-repeat="series in series">{{series.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <label>Content</label>
+              <textarea rows="5" class="form-control" ng-model="editedBlog.content"></textarea>
+          </div>
+          <div class="form-group">
+              <label>Image URL</label>
+              <input type="text" class="form-control" ng-model="editedBlog.image">
+          </div>
+
+          <button type="submit" class="btn btn-info btn-lg">Save</button>
+          <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>
+
+        </form>
+
+      </div> -->
+
+      <!--//Blogs using mongoose-->
+      <div ng-repeat="blog in blogs"><!--Blogs-->
+        <div class="page-header">
+          <h1>{{blog.title}} <small>- {{blog.series}}</small></h1>
+        </div>
+
+        <div class="row">
+          <div class="col-md-5">
+            <img id="blogPic" src="#">
+          </div>
+          <div class="col-md-7">
+            <h3>{{blog.content}}</h3>
+            <!-- <button type="button" class="btn btn-link" ng-click="setEditedBlog(blogs);startEditing();">
+              <span class="glyphicon glyphicon-pencil"></span>
+              Edit Blog
+            </button> -->
+          </div>
+        </div>
+      </div>
+
+
+    </div><!--/ Main Container Div -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Master.css -->
+<link href="stylesheets/master.css" rel="stylesheet">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
