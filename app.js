@@ -94,6 +94,34 @@ var Blog = mongoose.model('Blog', {
 		});
 	});
 
+  // GET a blog by id
+  app.get('/api/blogs/:blog_id', function (req, res){
+    Blog.findById(req.params.blog_id, function (err, blog) {
+    if (err)
+        res.send(err);
+      res.send(blog);
+  });
+});
+
+  // EDIT a blog
+	app.put('/api/blogs/:blog_id', function(req, res) {
+		Blog.findByIdAndUpdate(req.params.blog_id,
+      {$set: { title: req.body.title, series: req.body.series, content: req.body.content, image: req.body.image }},
+      {upsert:true},
+      function(err, blog) {
+
+			if (err)
+				res.send(err);
+
+			// get and return all the blogs after you create another
+			Blog.find(function(err, blogs) {
+				if (err)
+					res.send(err)
+				res.send(blogs);
+			});
+		});
+	});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

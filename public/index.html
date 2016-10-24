@@ -81,8 +81,8 @@
           Create Blog
         </button>
 
-        <div ng-if="isCreating"><!--Creating Form-->
-          <form class="create-form" ng-show="isCreating" role="form" ng-submit="createBlog(blogObj)">
+        <div ng-show="isCreating"><!--Creating Form-->
+          <form class="create-form" role="form" ng-submit="createBlog(blogObj)">
             <div class="form-group">
               <label for="newBlogTitle">Title</label>
               <input type="text" class="form-control" id="newBlogTitle" ng-model="blogObj.title">
@@ -111,27 +111,28 @@
         </div>
       </div>
 
-      <!-- <div ng-if="isEditing">
-        <h4>Editing {{editedBlog.title}}</h4>
+      <!--Edit Blog Form-->
+      <div ng-show="isEditing">
+        <h4>Editing {{gotBlog.title}}</h4>
 
-        <form class="edit-form" role="form" ng-submit="updateBlog(editedBlog)" novalidate>
+        <form class="edit-form" role="form" ng-submit="updateBlog(gotBlog)" novalidate>
           <div class="form-group">
               <label>Title</label>
-              <input type="text" class="form-control" ng-model="editedBlog.title">
+              <input type="text" class="form-control" ng-model="gotBlog.title">
           </div>
           <div class="form-group">
             <label>Series</label>
-            <select class="form-control" ng-model="editedBlog.series">
+            <select class="form-control" ng-model="gotBlog.series">
               <option ng-repeat="series in series">{{series.name}}</option>
             </select>
           </div>
           <div class="form-group">
               <label>Content</label>
-              <textarea rows="5" class="form-control" ng-model="editedBlog.content"></textarea>
+              <textarea rows="5" class="form-control" ng-model="gotBlog.content"></textarea>
           </div>
           <div class="form-group">
               <label>Image URL</label>
-              <input type="text" class="form-control" ng-model="editedBlog.image">
+              <input type="text" class="form-control" ng-model="gotBlog.image">
           </div>
 
           <button type="submit" class="btn btn-info btn-lg">Save</button>
@@ -139,7 +140,7 @@
 
         </form>
 
-      </div> -->
+      </div>
 
       <!--//Blogs using mongoose-->
       <div ng-repeat="blog in blogs"><!--Blogs-->
@@ -153,7 +154,7 @@
           </div>
           <div class="col-md-7">
             <h3>{{blog.content}}</h3>
-            <button type="button" class="btn btn-link" ng-click="setEditedBlog(blogs);startEditing();">
+            <button type="button" class="btn btn-link" ng-click="startEditing(); getBlog(blog._id)">
               <span class="glyphicon glyphicon-pencil"></span>
               Edit Blog
             </button>
